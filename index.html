@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Für Chiara | Freundschafts-Log</title>
+    <style>
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00f2ff;
+            --neon-purple: #bc13fe;
+            --bg-dark: #050505;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-dark);
+            color: white;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .active { display: flex; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Neon Text Effekte */
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+            margin-bottom: 20px;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--neon-purple);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px var(--neon-purple);
+            line-height: 1.6;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: var(--neon-pink);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--neon-pink);
+        }
+
+        /* Buttons */
+        button {
+            margin-top: 30px;
+            padding: 15px 35px;
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        button:hover {
+            background: var(--neon-blue);
+            color: black;
+            box-shadow: 0 0 30px var(--neon-blue);
+        }
+
+        /* Fuchs Bild */
+        .fuchs-img {
+            max-width: 100%;
+            border-radius: 20px;
+            border: 4px solid var(--neon-pink);
+            box-shadow: 0 0 25px var(--neon-pink);
+            margin-bottom: 20px;
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--neon-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div id="p1" class="screen active">
+            <h1>SYSTEMBOOT...</h1>
+            <p style="color: var(--neon-purple);">Lade persönliche Nachricht für Chiara</p>
+            <button onclick="nextPage(1, 2)">Nachricht entschlüsseln</button>
+        </div>
+
+        <div id="p2" class="screen">
+            <div class="message-box">
+                <p>SYSTEM-LOG <span class="highlight">#FREUNDSCHAFT</span></p>
+                <hr style="border: 0.5px solid var(--neon-purple); margin-bottom: 15px;">
+                <p>Hey Chiara, seit du im Kommando arbeitest, fühlt sich hier alles so viel lebendiger an. Es ist, als hätte jemand den <span class="highlight">"Gute-Laune-Boost"</span> aktiviert!</p>
+                <p>Die Tage fliegen förmlich an mir vorbei und ich merke, wie sich da echt was Besonderes entwickelt. Ich hab das Gefühl, da wächst gerade eine richtig tolle <span class="highlight">Freundschaft</span> – das macht mich echt glücklich.</p>
+                <p>Danke für die vielen Lacher und die tolle Zeit. Es ist einfach klasse, dass du da bist!</p>
+                <div class="signature">Beste Grüße, Dein [Dein Name]</div>
+            </div>
+            <button onclick="nextPage(2, 3)">Anhang öffnen</button>
+        </div>
+
+        <div id="p3" class="screen">
+            <h1>FÜR DICH</h1>
+            <img src="fuchs.jpg" alt="Neon Fuchs" class="fuchs-img">
+            <p style="color: var(--neon-blue); font-size: 1.2rem; letter-spacing: 2px;">KLASSIGE FREUNDSCHAFT!</p>
+            <button onclick="location.reload()" style="font-size: 0.8rem; padding: 10px 20px;">Zurück zum Start</button>
+        </div>
+
+    </div>
+
+    <script>
+        function nextPage(curr, next) {
+            document.getElementById('p' + curr).classList.remove('active');
+            document.getElementById('p' + next).classList.add('active');
+        }
+    </script>
+</body>
+</html>
