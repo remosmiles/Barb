@@ -2,13 +2,14 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Für Chiara | Magic Moment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Für Chiara</title>
     <style>
         :root {
             --neon-pink: #ff00ff;
             --neon-blue: #00f2ff;
             --neon-purple: #bc13fe;
+            --neon-green: #00ff41;
             --bg-dark: #050505;
         }
 
@@ -18,16 +19,14 @@
             color: white;
             font-family: 'Segoe UI', sans-serif;
             overflow: hidden;
-            height: 100vh;
-            width: 100vw;
+            height: 100%; width: 100%;
         }
 
-        /* STERNENREGEN CANVA */
+        /* STERNENREGEN HINTERGRUND */
         #starCanvas {
             position: fixed;
             top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -37,7 +36,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100dvh; /* Dynamic Viewport Height für mobile Browser */
             width: 100%;
         }
 
@@ -47,86 +46,92 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            width: 90%;
-            max-width: 600px;
-            animation: fadeIn 1s ease-in-out;
+            width: 85%;
+            max-width: 450px;
+            animation: fadeIn 0.8s ease-out;
         }
 
         .active { display: flex; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
+            from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
 
         h1 {
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
-            font-size: 2.2rem;
+            text-shadow: 0 0 10px var(--neon-blue);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
         .message-box {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
             border: 2px solid var(--neon-purple);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 20px var(--neon-purple);
+            box-shadow: 0 0 15px var(--neon-purple);
             text-align: left;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.4;
         }
 
         .highlight { color: var(--neon-pink); font-weight: bold; }
 
         button {
-            margin-top: 25px;
-            padding: 15px 30px;
+            margin-top: 20px;
+            padding: 12px 25px;
             background: transparent;
             border: 2px solid var(--neon-blue);
             color: var(--neon-blue);
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            box-shadow: 0 0 10px var(--neon-blue);
+            box-shadow: 0 0 8px var(--neon-blue);
+            -webkit-tap-highlight-color: transparent; /* Verhindert grauen Kasten auf Handy */
         }
-
-        button:hover { background: var(--neon-blue); color: black; }
 
         .fuchs-img {
-            max-width: 80%;
+            max-width: 90%;
+            height: auto;
             border-radius: 15px;
             border: 3px solid var(--neon-pink);
-            box-shadow: 0 0 20px var(--neon-pink);
+            box-shadow: 0 0 15px var(--neon-pink);
         }
 
-        /* TÜREN STYLING */
+        .zitat {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #ccc;
+            margin: 15px 0;
+            padding: 0 10px;
+        }
+
+        /* TÜREN MOBILE-OPTIMIERT */
         .door-container {
             display: flex;
-            gap: 20px;
-            margin-top: 30px;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            width: 100%;
         }
 
         .door {
-            width: 80px;
-            height: 120px;
-            border: 3px solid var(--neon-green);
+            width: 70px;
+            height: 100px;
+            border: 2px solid var(--neon-green);
             border-radius: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: 0.3s;
-            background: rgba(0, 255, 0, 0.1);
+            background: rgba(0, 255, 65, 0.1);
             font-weight: bold;
-            color: #00ff41;
+            color: var(--neon-green);
             text-decoration: none;
-            box-shadow: 0 0 10px #00ff41;
+            box-shadow: 0 0 8px var(--neon-green);
         }
 
-        .door:hover {
-            transform: scale(1.1);
-            background: #00ff41;
-            color: black;
-            box-shadow: 0 0 30px #00ff41;
-        }
+        .door:active { transform: scale(0.9); background: var(--neon-green); color: black; }
     </style>
 </head>
 <body>
@@ -135,32 +140,29 @@
 
     <div class="container">
         <div id="p1" class="screen active">
-            <h1>WILLKOMMEN CHIARA</h1>
-            <p>Ein kleiner Sternenregen für eine tolle Kollegin...</p>
+            <h1>HI CHIARA</h1>
+            <p style="color: var(--neon-purple);">Lade freundschaftliche Daten...</p>
             <button onclick="nextPage(1, 2)">Nachricht öffnen</button>
         </div>
 
         <div id="p2" class="screen">
             <div class="message-box">
-                <p>SYSTEM-LOG <span class="highlight">#FREUNDSCHAFT</span></p>
-                <hr style="border: 0.5px solid var(--neon-purple); margin-bottom: 15px;">
-                <p>Hey Chiara, seit du im Kommando arbeitest, fühlt sich hier alles so viel lebendiger an. Es ist, als hätte jemand den <span class="highlight">"Gute-Laune-Boost"</span> aktiviert!</p>
-                <p>Die Tage fliegen förmlich an mir vorbei und ich merke, wie sich da echt was Besonderes entwickelt. Ich hab das Gefühl, da wächst gerade eine richtig tolle <span class="highlight">Freundschaft</span> – das macht mich echt glücklich.</p>
-                <p>Danke für die vielen Lacher und die tolle Zeit. Es ist einfach klasse, dass du da bist!</p>
-                <div class="signature">Beste Grüße, Remo </div>
+                <p>Hey Chiara,</p>
+                <p>seit du im <span class="highlight">Kommando</span> arbeitest, fühlt sich alles viel lebendiger an. Die Tage verfliegen und ich freue mich riesig, dass sich eine so <span class="highlight">tolle Freundschaft</span> entwickelt.</p>
+                <p style="text-align: right;">— [Dein Name]</p>
             </div>
-            <button onclick="nextPage(2, 3)">Anhang laden</button>
+            <button onclick="nextPage(2, 3)">Anhang öffnen</button>
         </div>
 
         <div id="p3" class="screen">
             <img src="fuchs.jpg" alt="Fuchs" class="fuchs-img">
-            <h2 style="color: var(--neon-blue);">Freundschaft, das ist wie ein Schatz, den man findet, ohne danach gesucht zu haben.</h2>
-            <button onclick="nextPage(3, 4)">Wähle dein Schicksal</button>
+            <div class="zitat">"Gute Kollegen sind diejenigen, an die man noch denkt, wenn die Arbeit erledigt ist – weil aus Zusammenarbeit Freundschaft wurde."</div>
+            <button onclick="nextPage(3, 4)">Wähle eine Tür</button>
         </div>
 
         <div id="p4" class="screen">
-            <h1>WÄHLE EINE TÜR</h1>
-            <p>Wohin wird dich dein Weg führen?</p>
+            <h1 style="color: var(--neon-green);">DESTINATION</h1>
+            <p>Wo geht die Reise hin?</p>
             <div class="door-container">
                 <a href="https://www.bullenpower-uri.ch" class="door">1</a>
                 <a href="https://www.bullenpower-uri.ch" class="door">2</a>
@@ -170,23 +172,24 @@
     </div>
 
     <script>
-        // STERNENREGEN LOGIK
         const canvas = document.getElementById('starCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
 
-        const stars = [];
-        for(let i = 0; i < 100; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 2,
-                speed: Math.random() * 1 + 0.5
-            });
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+        window.addEventListener('resize', resize);
+        resize();
 
-        function drawStars() {
+        const stars = Array.from({length: 80}, () => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 1.5,
+            speed: Math.random() * 0.8 + 0.2
+        }));
+
+        function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "white";
             stars.forEach(s => {
@@ -194,13 +197,12 @@
                 ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
                 ctx.fill();
                 s.y += s.speed;
-                if(s.y > canvas.height) s.y = 0;
+                if(s.y > canvas.height) s.y = -10;
             });
-            requestAnimationFrame(drawStars);
+            requestAnimationFrame(animate);
         }
-        drawStars();
+        animate();
 
-        // SEITEN-NAVIGATION
         function nextPage(curr, next) {
             document.getElementById('p' + curr).classList.remove('active');
             document.getElementById('p' + next).classList.add('active');
